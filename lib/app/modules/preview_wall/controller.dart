@@ -21,7 +21,7 @@ class PreviewWallController extends GetxController with StateMixin {
     change(null, status: RxStatus.loading());
     var args = Get.arguments;
     path = args["path"];
-    await Permission.storage.request();
+    // await Permission.storage.request();
     // wallFile.value = await getImageFileFromAssets(path);
     try {
       await downloadWallpaper(path);
@@ -43,23 +43,20 @@ class PreviewWallController extends GetxController with StateMixin {
 
   void setWallpaper({required int location}) async {
     try {
-      await Permission.storage.request();
-      if (await Permission.storage.status.isGranted) {
-        WallpaperManagerFlutter()
-            .setwallpaperfromFile(wallFile.value, location)
-            .then((value) {
-          Get.back();
-          Get.showSnackbar(GetSnackBar(
-            title: "Wallpaper set!",
-            duration: const Duration(seconds: 2),
-            backgroundColor: themeMode.value == ThemeMode.dark
-                ? Get.theme.colorScheme.primaryContainer
-                : Get.theme.colorScheme.secondary,
-            animationDuration: const Duration(milliseconds: 800),
-            message: "Wallpaper has been set",
-          ));
-        });
-      }
+      WallpaperManagerFlutter()
+          .setwallpaperfromFile(wallFile.value, location)
+          .then((value) {
+        Get.back();
+        Get.showSnackbar(GetSnackBar(
+          title: "Wallpaper set!",
+          duration: const Duration(seconds: 2),
+          backgroundColor: themeMode.value == ThemeMode.dark
+              ? Get.theme.colorScheme.primaryContainer
+              : Get.theme.colorScheme.secondary,
+          animationDuration: const Duration(milliseconds: 800),
+          message: "Wallpaper has been set",
+        ));
+      });
     } catch (e) {
       Get.showSnackbar(GetSnackBar(
         title: "Error",
