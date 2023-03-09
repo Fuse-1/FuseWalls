@@ -1,4 +1,4 @@
-import 'package:badges/badges.dart';
+import 'package:badges/badges.dart' as badge;
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -66,10 +66,10 @@ class WallpapersGallery extends GetView<WallpapersGalleryController> {
                                       childAspectRatio: 0.6,
                                       crossAxisCount: 2),
                               itemBuilder: (context, index) {
-                                return Badge(
+                                return badge.Badge(
                                   showBadge: controller
                                       .wallsTobeDisplayed[index].isNew,
-                                  shape: BadgeShape.square,
+                                  shape: badge.BadgeShape.square,
                                   toAnimate: false,
                                   badgeColor:
                                       Theme.of(context).colorScheme.primary,
